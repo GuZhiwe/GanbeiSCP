@@ -1,7 +1,7 @@
 {
   "name": "gbp",
   "version": "1.0.0",
-  "description": "",
+  "description": "I don't know what's this.",
   "exports": "server.js",
   "type": "module",
   "scripts": {
@@ -17,5 +17,15 @@
     "koa-body": "^4.2.0",
     "koa-bodyparser": "^4.3.0",
     "koa-static": "^5.0.0"
-  }
+  },
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MicroCBer/GanbeiSCP.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MicroCBer/GanbeiSCP/issues"
+  },
+  "homepage": "https://github.com/MicroCBer/GanbeiSCP#readme"
 }
