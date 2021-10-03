@@ -1,0 +1,33 @@
+html,
+body {
+    padding: 0; margin: 0; width: 100%; height: 100%; position: absolute; left: 0;top: 0; overflow: hidden; overflow-y: auto;
+}
+
+*{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+*::-webkit-scrollbar{
+    display: none;
+}
+
+.swal2-container{
+    backdrop-filter: blur(2px);
+    
+}
+
+[class^=swal2]{
+    color: white !important;
+}
+
+.swal2-styled.swal2-confirm{
+    background-color: #0066ff;
+}
+
+.swal2-popup{
+    background: #ffffff00 !important;
+}
+
+.swal2-loader{
+    border-color: #ffffff transparent #ffffff transparent !important;
+}

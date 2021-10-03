@@ -1,0 +1,12 @@
+@import url(/style/regular.css);
+.posts .post {
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.466);
+}
+
+.posts .post .post-title {
+  font-size: 20px;
+  font-weight: 800;
+  display: block;
+}
+/*# sourceMappingURL=index.css.map */

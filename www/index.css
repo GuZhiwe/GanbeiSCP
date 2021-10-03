@@ -1,0 +1,92 @@
+@import url(/style/regular.css);
+html {
+  overflow: hidden;
+}
+
+.header {
+  height: 150px;
+  width: 100vw;
+  position: relative;
+  background: -webkit-gradient(linear, left bottom, left top, from(#00305e), color-stop(80%, black));
+  background: linear-gradient(to top, #00305e, black 80%);
+}
+
+.header .titles {
+  position: relative;
+  top: 40px;
+  left: 110px;
+}
+
+.header .titles .title {
+  padding: 19px 0;
+  line-height: 0px;
+  max-height: 0;
+  font-weight: bold;
+  font-size: 23px;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #00000044;
+  font-family: verdana,arial,helvetica,sans-serif;
+}
+
+.header .titles .subtitle {
+  font-family: "Trebuchet MS", Trebuchet, Verdana, Arial, Helvetica;
+  position: absolute;
+  top: 30px;
+  padding: 19px 0;
+  line-height: 0px;
+  max-height: 0;
+  font-weight: bold;
+  color: #c0ddf0;
+  text-shadow: 1px 1px 1px #00000044;
+}
+
+.header .topbar {
+  background: -webkit-gradient(linear, left top, left bottom, from(#535353), to(#3b3b3b));
+  background: linear-gradient(#535353, #3b3b3b);
+  -webkit-box-shadow: 1px 1px 4px black;
+          box-shadow: 1px 1px 4px black;
+  width: 100vw;
+  height: 20px;
+  position: absolute;
+  bottom: 0px;
+}
+
+.header .icon {
+  position: absolute;
+  left: 20px;
+  top: 40px;
+  content: "";
+  background: url(/static/avatar.webp);
+  background-size: 66px 66px;
+  width: 66px;
+  height: 66px;
+  opacity: 0.4;
+  border-radius: 100%;
+}
+
+.content {
+  margin: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: calc(100vh - 190px);
+}
+
+.content iframe {
+  max-width: 700px;
+  width: 100%;
+  height: -webkit-fill-available;
+  height: -moz-available;
+  height: fill;
+}
+
+#busuanzi_container_site_pv {
+  color: rgba(255, 255, 255, 0.185);
+  position: absolute;
+  top: 4px;
+  left: 5px;
+}
+/*# sourceMappingURL=index.css.map */

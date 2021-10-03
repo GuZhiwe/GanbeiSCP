@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Name:
+    <input type="text" id="namee"><br>
+    Password:
+    <input type="password" name="" id="pwd"><br>
+    Invite Code:
+    <input type="text" name="" id="inv"><br>
+    <input id="reg" type="button" value="注册">
+    <script>
+        reg.onclick = async function () {
+            let result=await(await fetch("/api/reg", {
+                body: JSON.stringify({ code: inv.value, account: namee.value, password: pwd.value }),
+                method: "POST",
+            })).text()
+            if(result=="succeed"){
+                alert("注册成功！")
+                document.location.href="/"
+            }else{
+                alert("注册失败 请检查邀请码是否正确")
+            }
+        }
+    </script>
+</body>
+
+</html>

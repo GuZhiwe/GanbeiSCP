@@ -1,0 +1,72 @@
+@import url(/style/regular.css);
+.ctrl {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.ctrl .btns {
+  margin: 5px 0px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.ctrl .btns .btn {
+  font-size: 13px;
+  padding: 5px;
+  background: #0042bd;
+  color: white;
+  border: 1px rgba(0, 0, 0, 0.322) solid;
+  border-radius: 4px;
+  margin: 5px 0px;
+  cursor: pointer;
+}
+
+.ctrl .btns .spline {
+  width: 2px;
+  height: 13px;
+  border: 1px solid rgba(0, 0, 0, 0.301);
+  margin: 0px 5px;
+}
+
+.editor {
+  position: relative;
+  border: 1px rgba(0, 0, 0, 0.589) solid;
+  padding: 3px;
+  border-radius: 6px;
+  margin: 10px 0px;
+  -webkit-box-shadow: 1px 2px 3px rgba(226, 194, 194, 0.11);
+          box-shadow: 1px 2px 3px rgba(226, 194, 194, 0.11);
+  height: calc(50vh - 90px);
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: fill;
+  resize: none;
+  outline: none;
+}
+
+.preview {
+  overflow: scroll;
+  border: 1px rgba(0, 0, 0, 0.356) solid;
+  height: 50%;
+  border-radius: 5px;
+}
+
+.selectedLine {
+  pointer-events: none;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  height: 13px;
+  background: rgba(0, 0, 0, 0.178);
+  top: 30px;
+}
+
+.post-title {
+  outline: none;
+  margin: 4px 0px;
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: fill;
+}
+/*# sourceMappingURL=index.css.map */
