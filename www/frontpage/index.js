@@ -16,7 +16,7 @@
     let postsEle=document.querySelectorAll('.post')
     for(let i of postsEle){
         i.onclick=()=>{
-            document.location.hash="/post/?id="+i.dataset.id
+            parent.document.location.hash="/post/?id="+i.dataset.id
         }
     }
 })()

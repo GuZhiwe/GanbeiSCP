@@ -21,7 +21,7 @@
     let postsEle=document.querySelectorAll('.post')
     for(let i of postsEle){
         i.onclick=()=>{
-            document.location.hash="/editor/?id="+i.dataset.id
+            parent.document.location.hash="/editor/?id="+i.dataset.id
         }
     }
     document.querySelector(".new-post").onclick = async function () {
