@@ -34,6 +34,11 @@ var articleLang = {
     .gray{
         color:rgb(112, 112, 112);
     }
+
+    .content{
+        overflow: scroll;
+        pointer-events: none;
+    }
     `,
     addStyle(){
         let dom=document.createElement("style")
