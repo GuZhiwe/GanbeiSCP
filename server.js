@@ -6,6 +6,7 @@ import * as koaStatic from "koa-static"
 import * as bcrypt from "bcrypt"
 import * as koabody from "koa-body"
 import * as jwt from "jsonwebtoken"
+import { readFileSync } from "fs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const adapter = new JSONFile(__dirname + "/db.json")
@@ -14,6 +15,8 @@ await db.read()
 db.data ||= {
     posts: [], users: []
 }
+
+reg_key=readFileSync(__dirname + "/reg_key.txt").toString()
 
 function makeid(length) {
     var result = '';
@@ -62,7 +65,7 @@ app.use((ctx) => {
     }
     if (ctx.path == "/api/reg") {
         try{
-            let result=jwt.default.verify(ctx.request.json.code,'your key here')
+            let result=jwt.default.verify(ctx.request.json.code,reg_key)
             if(result.invite=="yes"){
                 console.log(ctx.request.json)
                 db.data.users.push({
@@ -152,4 +155,4 @@ app.use((ctx) => {
 })
 
 
-app.listen(80);
+app.listen(8800);

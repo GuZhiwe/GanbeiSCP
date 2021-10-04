@@ -83,3 +83,4 @@ inviteCodeGen.cjs
 
 inviteCodeGen.cjs
 *.cjs
+db.json

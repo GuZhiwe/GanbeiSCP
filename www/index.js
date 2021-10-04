@@ -36,16 +36,16 @@ document.querySelector(".icon").onclick = async function () {
         if (response.status !== 200) {
             throw new Error(response.status)
         } else {
-            if(frame.contentWindow.location.pathname == "/manage/")frame.src = "/frontpage/"
-            else frame.src = "/manage/"
+            if(frame.contentWindow.location.pathname == "/manage/")document.location.hash= "/frontpage/"
+            else document.location.hash = "/manage/"
         }
     }).catch(() => {
-        frame.src = "/login/"
+        document.location.hash = "/login/"
     });
 }
 
 function jump(url){
-    frame.src=url
+    document.location.hash=url
 }
 
 

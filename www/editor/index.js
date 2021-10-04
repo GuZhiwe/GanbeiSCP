@@ -130,7 +130,7 @@ document.querySelector(".btns .upload").onclick = async () => {
 }
 
 document.querySelector(".btns .back").onclick  =
-()=>{document.location.href=document.referrer}
+()=>{document.location.hash=document.referrer}
 
 (async () => {
     parent.swal.showLoading();
