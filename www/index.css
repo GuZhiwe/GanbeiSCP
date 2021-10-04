@@ -49,6 +49,27 @@ html {
   height: 20px;
   position: absolute;
   bottom: 0px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.header .topbar .topbtn {
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  border-left: 1px solid rgba(0, 0, 0, 0.452);
+  border-right: 1px solid rgba(0, 0, 0, 0.452);
+  background: -webkit-gradient(linear, left top, left bottom, from(#555555), to(#2c2c2c));
+  background: linear-gradient(#555555, #2c2c2c);
+  padding: 0px 10px;
+  margin: 0px 4px;
+  -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.562);
+          box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.562);
 }
 
 .header .icon {

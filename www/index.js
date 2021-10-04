@@ -44,10 +44,14 @@ document.querySelector(".icon").onclick = async function () {
     });
 }
 
+function jump(url){
+    frame.src=url
+}
+
 
 !(async function () {
     while (await wait(100)) {
-        if (document.location.hash.slice(1) != frame.src) {
+        if (document.location.hash.slice(1) != frame.contentWindow.location.pathname) {
             await wait(100)
 
             if (!isBrowserHashChange) {
