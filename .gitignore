@@ -84,4 +84,5 @@ inviteCodeGen.cjs
 inviteCodeGen.cjs
 *.cjs
 db.json
-reg_key.txt
+
+
