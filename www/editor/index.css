@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url(/style/regular.css);
 .ctrl {
   overflow-x: scroll;
@@ -62,11 +63,24 @@
   top: 30px;
 }
 
+.tips {
+  font-size: 12px;
+}
+
 .post-title {
   outline: none;
   margin: 4px 0px;
-  width: -webkit-fill-available;
-  width: -moz-available;
-  width: fill;
+  width: calc(100% - 100px);
+  display: inline;
+}
+
+.post-level {
+  width: 20px;
+  float: right;
+  margin: 4px 0px;
+}
+
+.post-level::before {
+  content: "权限:";
 }
 /*# sourceMappingURL=index.css.map */

@@ -55,8 +55,22 @@
     top:30px;
 }
 
+.tips{
+    font-size: 12px;
+}
+
 .post-title{
     outline:none;
     margin:4px 0px;
-    width:fill;
+    width:calc(100% - 100px);
+    display: inline;
+}
+
+.post-level{
+    width:20px;
+    float:right;
+    margin:4px 0px;
+    &::before{
+        content:"权限:";
+    }
 }

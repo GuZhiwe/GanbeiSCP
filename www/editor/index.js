@@ -12,7 +12,7 @@ sim.style.pointerEvents = "none"
 document.body.appendChild(sim)
 let cursorLine;
 let editor = document.querySelector(".editor")
-let title=document.querySelector(".post-title")
+let title = document.querySelector(".post-title")
 setInterval(() => {
     let val = editor.value
     let lines = val.split('\n')
@@ -39,7 +39,9 @@ function updatePreview() {
 document.querySelector(".editor").addEventListener("keyup", updatePreview)
 
 
-function currentLineAddFlag(flagsymbol, flags = ["#", "----", "##", "#meta","#gray"], space = " ") {
+function currentLineAddFlag(flagsymbol, flags =
+
+    ["#", "----", "##", "#meta", "#gray", "#warn"], space = " ") {
     let nowStart = editor.selectionStart, nowEnd = editor.selectionEnd
     let val = editor.value
     let lines = val.split('\n')
@@ -62,6 +64,20 @@ function currentLineAddFlag(flagsymbol, flags = ["#", "----", "##", "#meta","#gr
 }
 
 
+document.querySelector(".btns .desc").onclick = () => {
+    parent.swal.fire({
+        title: "使用教程",
+        html:
+            `
+1.在文本框内编写你的投稿<br>
+2.修改标题和权限<br>
+（权限：0:访客 1:注册用户 >2:特殊权限（如R18））<br>
+3.点击保存 否则你的投稿不会被上传
+`
+    })
+}
+
+document.querySelector(".btns .warn").onclick = () => { currentLineAddFlag("#warn") }
 document.querySelector(".btns .gray").onclick = () => { currentLineAddFlag("#gray") }
 document.querySelector(".btns .metadata").onclick = () => { currentLineAddFlag("#meta") }
 document.querySelector(".btns .title").onclick = () => { currentLineAddFlag("#") }
@@ -115,22 +131,22 @@ document.querySelector(".btns .bold").onclick = () => {
     updatePreview()
 }
 
-let pid=/id=(\S+)/.exec(document.location.search)[1]
+let pid = /id=(\S+)/.exec(document.location.search)[1]
 
 document.querySelector(".btns .upload").onclick = async () => {
     parent.swal.showLoading();
     let result = (await fetch("/api_authed/edit_post", {
         body: JSON.stringify({
             id: localStorage.id, content: editor.value
-            , title: title.value, pid
+            , title: title.value, pid, permission: permission.value
         }),
         method: "POST",
     })).status
     parent.swal.close()
 }
 
-document.querySelector(".btns .back").onclick  =
-()=>{document.location.hash=document.referrer}
+document.querySelector(".btns .back").onclick =
+    () => { parent.document.location.hash = "/manage/" }
 
 (async () => {
     parent.swal.showLoading();
@@ -138,6 +154,7 @@ document.querySelector(".btns .back").onclick  =
         await fetch(`/api/post?id=` + pid
         )).json()
 
+    permission.value = result.permission
     editor.value = result.content;
     title.value = result.title
     updatePreview()

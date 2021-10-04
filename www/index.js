@@ -29,14 +29,14 @@ function wait(ms) {
 
 document.querySelector(".icon").onclick = async function () {
     let permission = true;
-    fetch("/api_authed/test",{
+    fetch("/api_authed/test", {
         method: "POST",
-        body:JSON.stringify({id:localStorage.id})
+        body: JSON.stringify({ id: localStorage.id })
     }).then((response) => {
         if (response.status !== 200) {
             throw new Error(response.status)
         } else {
-            if(frame.contentWindow.location.pathname == "/manage/")document.location.hash= "/frontpage/"
+            if (frame.contentWindow.location.pathname == "/manage/") document.location.hash = "/frontpage/"
             else document.location.hash = "/manage/"
         }
     }).catch(() => {
@@ -44,11 +44,25 @@ document.querySelector(".icon").onclick = async function () {
     });
 }
 
-function jump(url){
-    document.location.hash=url
+function jump(url) {
+    document.location.hash = url
 }
 
-
+function testAuthed(){
+    fetch("/api_authed/test", {
+        method: "POST",
+        body: JSON.stringify({ id: localStorage.id })
+    }).then((response) => {
+        if (response.status !== 200) {
+            throw new Error(response.status)
+        } else {
+            document.querySelector('.manage').style.display = "";
+        }
+    }).catch(() => {
+        document.querySelector('.login').style.display = "";
+    });
+}
+testAuthed()
 !(async function () {
     while (await wait(100)) {
         if (document.location.hash.slice(1) != frame.contentWindow.location.pathname) {
@@ -56,6 +70,7 @@ function jump(url){
 
             if (!isBrowserHashChange) {
                 document.location.hash = frame.contentWindow.location.pathname
+                testAuthed()
             }
             isBrowserHashChange = false
         }

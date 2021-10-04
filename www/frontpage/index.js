@@ -1,6 +1,6 @@
 (async () => {
     parent.swal.showLoading();
-    let posts = await (await fetch("/api/all_posts")).json()
+    let posts = await (await fetch("/api/all_posts?id="+localStorage.id)).json()
     parent.swal.close();
     let html = ""
     for (let i of posts) {

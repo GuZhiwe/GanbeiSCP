@@ -41,6 +41,14 @@ var articleLang = {
     .content a{
         pointer-events: none;
     }
+
+    .warn{
+        color:red;
+        width:100%;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 800;
+    }
     `,
     addStyle(){
         let dom=document.createElement("style")
@@ -61,6 +69,10 @@ var articleLang = {
                 }
                 case "#gray": {
                     result += `<div class="gray">${formatted}</div>`
+                    break;
+                }
+                case "#warn": {
+                    result += `<div class="warn">${formatted}</div>`
                     break;
                 }
                 case "#": {

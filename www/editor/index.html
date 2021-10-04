@@ -11,18 +11,24 @@
 <body>
     <div class="ctrl">
         <div class="btns">
+            <span class="btn desc">教程</span>
+            <span class="spline"></span>
             <span class="btn title">标题</span>
             <span class="btn subtitle">子标题</span>
             <span class="btn splitline">分割线</span>
             <span class="btn gray">灰色</span>
             <span class="btn metadata">元数据</span>
             <span class="btn bold">加粗</span>
+            <span class="btn warn">警告</span>
             <span class="spline"></span>
-            <span class="btn upload">上传</span>
+            <span class="btn upload">保存</span>
             <span class="btn back">返回</span>
         </div>
     </div>
+    <span class="tips">标题</span>
     <input type="text" placeholder="文章标题" class="post-title">
+    <span class="tips">权限</span>
+    <input type="number" id="permission" placeholder="权限" value="1" class="post-level">
     <textarea class="editor"></textarea>
     <div class="preview">
     </div>

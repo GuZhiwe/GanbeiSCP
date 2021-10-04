@@ -16,7 +16,7 @@ db.data ||= {
     posts: [], users: []
 }
 
-let reg_key=readFileSync(__dirname + "/reg_key.txt").toString()
+let reg_key = readFileSync(__dirname + "/reg_key.txt").toString()
 
 function makeid(length) {
     var result = '';
@@ -51,7 +51,7 @@ app.use((ctx) => {
             let account = db.data.users[i];
             if (account.account == ctx.query.account
                 && bcrypt.compareSync(ctx.query.password, account.password)) {
-
+                db.data.users[i].permission ||= 1
                 let id = makeid(36);
                 for (let ids in id_user) {
                     if (id_user[ids] == i) delete id_user[ids]
@@ -64,21 +64,21 @@ app.use((ctx) => {
         ctx.body = "Wrong password or account"
     }
     if (ctx.path == "/api/reg") {
-        try{
-            let result=jwt.default.verify(ctx.request.json.code,reg_key)
-            if(result.invite=="yes"){
+        try {
+            let result = jwt.default.verify(ctx.request.json.code, reg_key)
+            if (result.invite == "yes") {
                 console.log(ctx.request.json)
                 db.data.users.push({
                     account: ctx.request.json.account,
-                    password: bcrypt.hashSync(ctx.request.json.password,10),
-                    qq:result.qq
+                    password: bcrypt.hashSync(ctx.request.json.password, 10),
+                    qq: result.qq, permission: result.permission || 1
                 })
                 db.write()
-                ctx.body="succeed"
+                ctx.body = "succeed"
                 return;
             }
-        }catch(e){}
-        ctx.body="failed"
+        } catch (e) { }
+        ctx.body = "failed"
         return;
     }
 
@@ -86,25 +86,33 @@ app.use((ctx) => {
         if (db.data.posts[ctx.query.id]) {
             ctx.body = {
                 content: db.data.posts[ctx.query.id].content,
-                title: db.data.posts[ctx.query.id].title
+                title: db.data.posts[ctx.query.id].title,
+                permission: db.data.posts[ctx.query.id].permission,
             };
         }
     }
     if (ctx.path == "/api/all_posts") {
-        let tmp = [];
+        let tmp = [], qid = ctx.query.id;
+        let perm = 0;
+        try {
+            let userid = id_user[qid], user = db.data.users[userid];
+            perm = user.permission
+        } catch (e) { }
         for (let i = 0; i < db.data.posts.length; i++) {
             let e = db.data.posts[i]
-            tmp.push({
-                title: e.title,
-                creator: e.creator,
-                id: i,
-                lastModify: e.lastModify
-            })
+
+            if (perm >= e.permission)
+                tmp.push({
+                    title: e.title,
+                    creator: e.creator,
+                    id: i,
+                    lastModify: e.lastModify
+                })
         }
         ctx.body = JSON.stringify(tmp)
     }
     if (ctx.path.startsWith("/api_authed/")) {
-        
+
         let qid = ctx.query.id || ctx.request.json.id
         let userid = id_user[qid], user = db.data.users[userid];
         if (user) {
@@ -117,6 +125,7 @@ app.use((ctx) => {
                         lastModify: new Date().getTime(),
                         creator: user.account,
                         title: ctx.request.json.title,
+                        permission: 0,
                         history: [
                             {
                                 time: new Date().getTime(),
@@ -124,6 +133,7 @@ app.use((ctx) => {
                                 user: user.account,
                                 content: ctx.request.json.content,
                                 title: ctx.request.json.title,
+                                permission: 0
                             }]
                     })
 
@@ -133,14 +143,16 @@ app.use((ctx) => {
                 case "/api_authed/edit_post": {
                     db.data.posts[ctx.request.json.pid].content =
                         ctx.request.json.content
+                    db.data.posts[ctx.request.json.pid].permission = ctx.request.json.permission
                     db.data.posts[ctx.request.json.pid].lastModify = new Date().getTime()
-                    db.data.posts[ctx.request.json.pid].title=ctx.request.json.title
+                    db.data.posts[ctx.request.json.pid].title = ctx.request.json.title
                     db.data.posts[ctx.request.json.pid].history.push(
                         {
                             time: new Date().getTime(),
                             action: "edit",
                             user: user.account,
                             title: ctx.request.json.title,
+                            permission: ctx.request.json.permission,
                             content: ctx.request.json.content
                         })
                     db.write()
