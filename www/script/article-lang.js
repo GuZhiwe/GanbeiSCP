@@ -37,6 +37,8 @@ var articleLang = {
 
     .content{
         overflow: scroll;
+    }
+    .content a{
         pointer-events: none;
     }
     `,
