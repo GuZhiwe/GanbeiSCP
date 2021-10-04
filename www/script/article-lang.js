@@ -38,7 +38,7 @@ var articleLang = {
     .content{
         overflow: scroll;
     }
-    .content a{
+    .content a:not(.zn){
         pointer-events: none;
     }
 
