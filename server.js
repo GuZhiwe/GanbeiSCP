@@ -16,7 +16,7 @@ db.data ||= {
     posts: [], users: []
 }
 
-reg_key=readFileSync(__dirname + "/reg_key.txt").toString()
+let reg_key=readFileSync(__dirname + "/reg_key.txt").toString()
 
 function makeid(length) {
     var result = '';
